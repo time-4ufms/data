@@ -1,10 +1,17 @@
-const mysql = require('mysql2/promise');  // note o /promise aqui
+require('dotenv').config();
+const mysql = require('mysql2');
 
-const connection = mysql.createPool({      // use createPool para melhor performance
-    host: 'auth-db891.hstgr.io',
-    user: 'u684558480_pantanalDev',
-    password: 'pantanalDev2025',
-    database: 'u684558480_pantanalDev'
+const connection = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
 });
 
-module.exports = connection;
+connection.connect((err) => {
+  if (err) {
+    console.error('Erro ao conectar:', err);
+    return;
+  }
+  console.log('Conectado ao banco de dados!');
+});
