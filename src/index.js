@@ -1,8 +1,9 @@
 const app = require('./server');
-const db = require('./database'); // Isso já inicia a conexão
+const db = require('./database'); 
 const uploadRoutes = require('./routes/upload');
+const uploadRoutesTesouro = require('./routes/uploadTesouro');
 app.use(uploadRoutes);
-
+app.use(uploadRoutesTesouro);
 
 app.get('/', (req, res) => {
     res.send("Pantanal DEV");

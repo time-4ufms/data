@@ -13,7 +13,7 @@ router.post('/upload', upload.single('file'), async (req, res) => {
     const results = [];
 
     fs.createReadStream(req.file.path)
-        .pipe(csv({ separator: ',' })) // <-- ajuste aqui
+        .pipe(csv({ separator: '\t' })) // <-- ajuste aqui
         .on('data', (data) => {
             const cleanedRow = {};
             for (const key in data) {
